@@ -25,9 +25,9 @@ function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
       }, [content]);
 
     return (
-          <>
+          <div data-testid="mdcontent">
             {ReactHtmlParser(appState)}
-          </>
+          </div>
     );
 };
 
