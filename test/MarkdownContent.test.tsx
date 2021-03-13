@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 import {act, cleanup, render, screen} from "@testing-library/react";
 import axios from "axios";
 import React from "react";
-import MarkdownContent from "../src/MarkdownContent";
+import {MarkdownContent} from "../src/MarkdownContent";
 import { GetTestFixture, TestFixtures, TestFixtureResults } from "./fixtures/GetTestFixtures";
 
 jest.mock("axios");
@@ -22,6 +22,30 @@ describe("<MarkdownContent />", () => {
         });
 
         expect(renderedComponent).toMatchSnapshot();
+    });
+
+    it("should have the class name passed via props", async () => {
+        const res = {data: ""};
+        mockedAxios.get.mockResolvedValue(res);
+
+        await act(async () => {
+            render(<MarkdownContent content="" className="xyz"/>);
+        });
+
+        const linkElement = await screen.findByTestId(TEST_ID);
+        expect(linkElement).toHaveClass("markdown-content-container xyz");
+    });
+
+    it("should have default class name if no class is passed via props", async () => {
+        const res = {data: ""};
+        mockedAxios.get.mockResolvedValue(res);
+
+        await act(async () => {
+            render(<MarkdownContent content="" />);
+        });
+
+        const linkElement = await screen.findByTestId(TEST_ID);
+        expect(linkElement).toHaveClass("markdown-content-container");
     });
 
     it("empty", async () => {
