@@ -48,7 +48,7 @@ describe("<MarkdownContent />", () => {
         expect(linkElement).toHaveClass("markdown-content-container");
     });
 
-    it("empty", async () => {
+    it("shouldn't contain any HTML when no markdown content is passed", async () => {
         const res = {data: ""};
         mockedAxios.get.mockResolvedValue(res);
 

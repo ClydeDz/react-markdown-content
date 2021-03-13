@@ -6,7 +6,7 @@
   "typings": "lib/MarkdownContent.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "test": "jest --verbose",
     "snap": "jest --updateSnapshot"
   },
   "repository": {
