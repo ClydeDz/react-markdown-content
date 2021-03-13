@@ -16,6 +16,8 @@ export enum TestFixtureResults {
         <td align=\"left\">Banana</td><td align=\"right\">$14</td></tr><tr><td>Erin</td><td align=\"left\">Orange</td>
         <td align=\"right\">$5</td></tr></tbody></table>`,
     INLINE_HTML = `<p>Some image<img src=\"https://ui-avatars.com/api/?name=john%20doe\"></p>`,
+    HORIZONTAL_RULE = `<p>Horizontal rule</p><hr>`,
+    HEADING = `<h2>Heading</h2>`,
 }
 
 export enum TestFixtures {
@@ -26,6 +28,8 @@ export enum TestFixtures {
     GFM_FORMATS = "gfm-format.md",
     GFM_TABLE = "gfm-table.md",
     INLINE_HTML = "inline-html.md",
+    HORIZONTAL_RULE = "horizontal-rule.md",
+    HEADING = "heading.md",
 }
 
 export const GetTestFixture = (fixtureName: TestFixtures) => {
