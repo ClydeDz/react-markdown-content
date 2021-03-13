@@ -1,36 +1,36 @@
 import MarkdownContent from '../lib/MarkdownContent';
 import React from 'react';
 import axios from 'axios';
-import {render, act, screen, cleanup} from '@testing-library/react';
-
+import {render, act, screen, cleanup, waitFor} from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect'
 jest.mock('axios');
 
 afterEach(cleanup)
 
 describe('', () => {
-    it('should take a snapshot', () => {
+    it('should take a snapshot', async () => {
         const res = {data: `## About`};
         axios.get.mockResolvedValue(res);
-        const { asFragment } = render(<MarkdownContent content="" />)
-        expect(asFragment(<MarkdownContent content="" />)).toMatchSnapshot()
+
+        let renderedComponent;
+        await act(async () => {
+            renderedComponent = render(<MarkdownContent content="" />); 
+        });
+        
+        expect(renderedComponent).toMatchSnapshot()
     })   
 
     it('should return correct HTML', async () => {
         const res = {data: "## About \r _bold text_"};
-        axios.get.mockResolvedValue(res);
-        
-        await act(
-            () =>
-            new Promise((resolve) => {
-            setImmediate(() => { 
-                render(<MarkdownContent content="" />); 
-                resolve();
-            });
-            })
-        );
+        axios.get.mockResolvedValue(res);        
 
-        const linkElement = screen.getByTestId('mdcontent');
-        expect(linkElement.innerHTML).toBe("<h2>About</h2><p><em>bold text</em></p>"); 
+        await act(async () => {
+            render(<MarkdownContent content="" />); 
+        });
+
+        const linkElement = await screen.findByTestId('mdcontent');
+        expect(linkElement.innerHTML).toBe("<h2>About</h2><p><em>bold text</em></p>");
+        
     })
 
 });
