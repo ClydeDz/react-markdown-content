@@ -25,7 +25,7 @@ function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
       }, [content]);
 
     return (
-          <div data-testid="mdcontent">
+          <div data-testid="MARKDOWN_CONTENT_CONTAINER">
             {ReactHtmlParser(appState)}
           </div>
     );

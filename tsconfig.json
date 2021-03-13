@@ -9,7 +9,7 @@
       "jsx": "react"
     },
     "exclude": [
-        "tests",
+        "test",
         "lib",
         "node_modules"
     ]

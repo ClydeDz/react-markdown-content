@@ -7,12 +7,12 @@ import { GetTestFixture, TestFixtures, TestFixtureResults } from "./fixtures/Get
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
-const TEST_ID = "mdcontent";
+const TEST_ID = "MARKDOWN_CONTENT_CONTAINER";
 
 afterEach(cleanup);
 
 describe("", () => {
-    it("should take a snapshot", async () => {
+    it("should match the snapshot", async () => {
         const res = {data: GetTestFixture(TestFixtures.SIMPLE)};
         mockedAxios.get.mockResolvedValue(res);
 
@@ -24,8 +24,8 @@ describe("", () => {
         expect(renderedComponent).toMatchSnapshot();
     });
 
-    it("should return correct HTML", async () => {
-        const res = {data: GetTestFixture(TestFixtures.SIMPLE)};
+    it("empty", async () => {
+        const res = {data: ""};
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
@@ -33,11 +33,14 @@ describe("", () => {
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
-        expect(linkElement.innerHTML).toBe(TestFixtureResults.SIMPLE);
+        expect(linkElement.innerHTML).toBe("");
     });
 
-    it("should return correct HTML", async () => {
-        const res = {data: GetTestFixture(TestFixtures.LINKS)};
+    it.each([
+        [TestFixtures.SIMPLE, TestFixtureResults.SIMPLE],
+        [TestFixtures.LINKS, TestFixtureResults.LINKS],
+    ])("should process markdown from %s and produce correct HTML", async (input, expected) => {
+        const res = {data: GetTestFixture(input)};
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
@@ -45,6 +48,6 @@ describe("", () => {
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
-        expect(linkElement.innerHTML).toBe(TestFixtureResults.LINKS);
+        expect(linkElement.innerHTML).toBe(expected);
     });
 });
