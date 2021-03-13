@@ -1,8 +1,8 @@
-import MarkdownContent from "../lib/MarkdownContent";
-import React from "react";
-import axios from "axios";
-import {render, act, screen, cleanup} from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import {act, cleanup, render, screen} from "@testing-library/react";
+import axios from "axios";
+import React from "react";
+import MarkdownContent from "../lib/MarkdownContent";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -16,10 +16,10 @@ describe("", () => {
 
         let renderedComponent;
         await act(async () => {
-            renderedComponent = render(<MarkdownContent content="" />); 
+            renderedComponent = render(<MarkdownContent content="" />);
         });
 
-        expect(renderedComponent).toMatchSnapshot()
+        expect(renderedComponent).toMatchSnapshot();
     });
 
     it("should return correct HTML", async () => {
@@ -34,5 +34,4 @@ describe("", () => {
         expect(linkElement.innerHTML).toBe("<h2>About</h2><p><em>bold text</em></p>");
 
     });
-
 });

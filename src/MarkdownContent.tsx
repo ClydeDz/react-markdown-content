@@ -29,6 +29,6 @@ function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
             {ReactHtmlParser(appState)}
           </div>
     );
-};
+}
 
 export default MarkdownContent;
