@@ -7,16 +7,16 @@ import gfm from "remark-gfm";
 import {resolveClassNames} from "./MarkdownContentUtils";
 
 interface IMarkdownContentProps {
-    content: string;
+    markdownFilePath: string;
     className?: string;
 }
 
 export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
-    const { content, className } = props;
+    const { markdownFilePath, className } = props;
     const [appState, setAppState] = useState("");
 
     useEffect(() => {
-        axios.get(content)
+        axios.get(markdownFilePath)
         .then(res => {
             remark()
             .use(html)
@@ -26,7 +26,7 @@ export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
                 setAppState(convertedHTML);
             });
         });
-      }, [content]);
+      }, [markdownFilePath]);
 
     return (
           <div data-testid="MARKDOWN_CONTENT_CONTAINER" className={resolveClassNames(className)}>

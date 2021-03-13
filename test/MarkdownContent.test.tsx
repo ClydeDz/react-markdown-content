@@ -24,7 +24,7 @@ describe("<MarkdownContent />", () => {
 
         let renderedComponent;
         await act(async () => {
-            renderedComponent = render(<MarkdownContent content="" />);
+            renderedComponent = render(<MarkdownContent markdownFilePath="" />);
         });
 
         expect(renderedComponent).toMatchSnapshot();
@@ -35,7 +35,7 @@ describe("<MarkdownContent />", () => {
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
-            render(<MarkdownContent content="" className="xyz"/>);
+            render(<MarkdownContent markdownFilePath="" className="xyz"/>);
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
@@ -47,7 +47,7 @@ describe("<MarkdownContent />", () => {
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
-            render(<MarkdownContent content="" />);
+            render(<MarkdownContent markdownFilePath="" />);
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
@@ -59,7 +59,7 @@ describe("<MarkdownContent />", () => {
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
-            render(<MarkdownContent content="" />);
+            render(<MarkdownContent markdownFilePath="" />);
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
@@ -81,7 +81,7 @@ describe("<MarkdownContent />", () => {
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
-            render(<MarkdownContent content="" />);
+            render(<MarkdownContent markdownFilePath="" />);
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
