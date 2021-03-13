@@ -3,6 +3,7 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import remark from "remark";
 import html from "remark-html";
+import gfm from "remark-gfm";
 import {resolveClassNames} from "./MarkdownContentUtils";
 
 interface IMarkdownContentProps {
@@ -19,6 +20,7 @@ export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
         .then(res => {
             remark()
             .use(html)
+            .use(gfm)
             .process(res.data, function (err: any, file: any): void {
                 const convertedHTML: any = file.contents;
                 setAppState(convertedHTML);

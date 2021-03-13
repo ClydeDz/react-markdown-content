@@ -5,10 +5,16 @@ import React from "react";
 import {MarkdownContent} from "../src/MarkdownContent";
 import { GetTestFixture, TestFixtures, TestFixtureResults } from "./fixtures/GetTestFixtures";
 
-jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 const TEST_ID = "MARKDOWN_CONTENT_CONTAINER";
+const removeLinebreaksTabsSpaces = (unformattedString: string) => {
+    if (!unformattedString) {
+        return "";
+    }
+    return unformattedString.replace(/\s\s+/g, "");
+};
 
+jest.mock("axios");
 afterEach(cleanup);
 
 describe("<MarkdownContent />", () => {
@@ -63,6 +69,10 @@ describe("<MarkdownContent />", () => {
     it.each([
         [TestFixtures.SIMPLE, TestFixtureResults.SIMPLE],
         [TestFixtures.LINKS, TestFixtureResults.LINKS],
+        [TestFixtures.GFM_CHECKLIST, TestFixtureResults.GFM_CHECKLIST],
+        [TestFixtures.GFM_FORMATS, TestFixtureResults.GFM_FORMATS],
+        [TestFixtures.GFM_TABLE, TestFixtureResults.GFM_TABLE],
+        [TestFixtures.CODE, TestFixtureResults.CODE],
     ])("should process markdown from %s and produce correct HTML", async (input, expected) => {
         const res = {data: GetTestFixture(input)};
         mockedAxios.get.mockResolvedValue(res);
@@ -72,6 +82,7 @@ describe("<MarkdownContent />", () => {
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
-        expect(linkElement.innerHTML).toBe(expected);
+        expect(removeLinebreaksTabsSpaces(linkElement.innerHTML))
+            .toBe(removeLinebreaksTabsSpaces(expected));
     });
 });
