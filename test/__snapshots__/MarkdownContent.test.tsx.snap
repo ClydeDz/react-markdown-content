@@ -11,6 +11,17 @@ Object {
         <h2>
           About
         </h2>
+        <p>
+          This is a 
+          <em>
+            simple
+          </em>
+           
+          <strong>
+            markdown
+          </strong>
+           file.
+        </p>
       </div>
     </div>
   </body>,
@@ -21,6 +32,17 @@ Object {
       <h2>
         About
       </h2>
+      <p>
+        This is a 
+        <em>
+          simple
+        </em>
+         
+        <strong>
+          markdown
+        </strong>
+         file.
+      </p>
     </div>
   </div>,
   "debug": [Function],
