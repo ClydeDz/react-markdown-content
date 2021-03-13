@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/extend-expect";
 import {act, cleanup, render, screen} from "@testing-library/react";
 import axios from "axios";
 import React from "react";
-import MarkdownContent from "../lib/MarkdownContent";
+import MarkdownContent from "../src/MarkdownContent";
 import { GetTestFixture, TestFixtures, TestFixtureResults } from "./fixtures/GetTestFixtures";
 
 jest.mock("axios");
