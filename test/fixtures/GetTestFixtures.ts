@@ -15,6 +15,7 @@ export enum TestFixtureResults {
         <tbody><tr><td>Joan</td><td align=\"left\">Apples</td><td align=\"right\">$11</td></tr><tr><td>Sally</td>
         <td align=\"left\">Banana</td><td align=\"right\">$14</td></tr><tr><td>Erin</td><td align=\"left\">Orange</td>
         <td align=\"right\">$5</td></tr></tbody></table>`,
+    INLINE_HTML = `<p>Some image<img src=\"https://ui-avatars.com/api/?name=john%20doe\"></p>`,
 }
 
 export enum TestFixtures {
@@ -24,6 +25,7 @@ export enum TestFixtures {
     CODE = "code.md",
     GFM_FORMATS = "gfm-format.md",
     GFM_TABLE = "gfm-table.md",
+    INLINE_HTML = "inline-html.md",
 }
 
 export const GetTestFixture = (fixtureName: TestFixtures) => {

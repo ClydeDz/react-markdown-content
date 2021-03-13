@@ -73,6 +73,7 @@ describe("<MarkdownContent />", () => {
         [TestFixtures.GFM_FORMATS, TestFixtureResults.GFM_FORMATS],
         [TestFixtures.GFM_TABLE, TestFixtureResults.GFM_TABLE],
         [TestFixtures.CODE, TestFixtureResults.CODE],
+        [TestFixtures.INLINE_HTML, TestFixtureResults.INLINE_HTML],
     ])("should process markdown from %s and produce correct HTML", async (input, expected) => {
         const res = {data: GetTestFixture(input)};
         mockedAxios.get.mockResolvedValue(res);
