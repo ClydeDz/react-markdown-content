@@ -11,7 +11,7 @@ const TEST_ID = "MARKDOWN_CONTENT_CONTAINER";
 
 afterEach(cleanup);
 
-describe("", () => {
+describe("<MarkdownContent />", () => {
     it("should match the snapshot", async () => {
         const res = {data: GetTestFixture(TestFixtures.SIMPLE)};
         mockedAxios.get.mockResolvedValue(res);

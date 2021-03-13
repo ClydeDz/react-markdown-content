@@ -3,13 +3,15 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import remark from "remark";
 import html from "remark-html";
+import {resolveClassNames} from "./MarkdownContentUtils";
 
 interface IMarkdownContentProps {
     content: string;
+    className?: string;
 }
 
-function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
-    const { content } = props;
+export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
+    const { content, className } = props;
     const [appState, setAppState] = useState("");
 
     useEffect(() => {
@@ -25,10 +27,9 @@ function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
       }, [content]);
 
     return (
-          <div data-testid="MARKDOWN_CONTENT_CONTAINER">
+          <div data-testid="MARKDOWN_CONTENT_CONTAINER" className={resolveClassNames(className)}>
             {ReactHtmlParser(appState)}
           </div>
     );
 }
 
-export default MarkdownContent;

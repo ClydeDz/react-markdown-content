@@ -6,6 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
+        class="markdown-content-container"
         data-testid="MARKDOWN_CONTENT_CONTAINER"
       >
         <h2>
@@ -27,6 +28,7 @@ Object {
   </body>,
   "container": <div>
     <div
+      class="markdown-content-container"
       data-testid="MARKDOWN_CONTENT_CONTAINER"
     >
       <h2>
