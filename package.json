@@ -9,6 +9,11 @@
     "test": "jest --verbose",
     "snap": "jest --updateSnapshot"
   },
+  "files": [
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ClydeDz/react-markdown-content.git"
