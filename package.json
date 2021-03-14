@@ -1,7 +1,7 @@
 {
   "name": "react-markdown-content",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "React component to render Markdown content as HTML.",
   "main": "lib/MarkdownContent.js",
   "typings": "lib/MarkdownContent.d.ts",
   "scripts": {
@@ -13,9 +13,17 @@
     "type": "git",
     "url": "git+https://github.com/ClydeDz/react-markdown-content.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Markdown",
+    "React",
+    "React Markdown",
+    "Commonmark",
+    "gfm",
+    "react-markdown-content",
+    "markdown-content"
+  ],
+  "author": "Clyde D'Souza",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ClydeDz/react-markdown-content/issues"
   },
@@ -39,5 +47,9 @@
     "remark": "^13.0.0",
     "remark-gfm": "^1.0.0",
     "remark-html": "^13.0.1"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16",
+    "react": ">=16"
   }
 }
