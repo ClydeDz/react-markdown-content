@@ -89,6 +89,19 @@ describe("<MarkdownContent />", () => {
         expect(await screen.queryByTestId(TEST_ID)).toBeNull();
     });
 
+    it("should log a console warning if there is an error with axios", async () => {
+        const res = {response: {data: "Invalid file path"}};
+        mockedAxios.get.mockRejectedValue(res);
+        const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+
+        await act(async () => {
+            render(<MarkdownContent markdownFilePath="../test/fixtures/simple.md" />);
+        });
+        expect(console.warn).toBeCalledTimes(1);
+        expect(await screen.queryByTestId(TEST_ID)).toBeNull();
+        consoleSpy.mockClear();
+    });
+
     it.each([
         [TestFixtures.SIMPLE, TestFixtureResults.SIMPLE],
         [TestFixtures.LINKS, TestFixtureResults.LINKS],

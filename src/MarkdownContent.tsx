@@ -25,6 +25,10 @@ export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
                 const convertedHTML: any = file.contents;
                 setAppState(convertedHTML);
             });
+        })
+        .catch((error) => {
+            console.warn(error.response.data);
+            setAppState("");
         });
       }, [markdownFilePath]);
 
