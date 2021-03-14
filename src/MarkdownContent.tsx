@@ -17,11 +17,11 @@ export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
 
     useEffect(() => {
         axios.get(markdownFilePath)
-        .then(res => {
+        .then((res) => {
             remark()
             .use(html)
             .use(gfm)
-            .process(res.data, function (err: any, file: any): void {
+            .process(res.data, (err: any, file: any): void => {
                 const convertedHTML: any = file.contents;
                 setAppState(convertedHTML);
             });
