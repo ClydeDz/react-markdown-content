@@ -30,8 +30,32 @@ describe("<MarkdownContent />", () => {
         expect(renderedComponent).toMatchSnapshot();
     });
 
-    it("should have the class name passed via props", async () => {
+    it("should match the snapshot when classname is provided", async () => {
+        const res = {data: GetTestFixture(TestFixtures.SIMPLE)};
+        mockedAxios.get.mockResolvedValue(res);
+
+        let renderedComponent;
+        await act(async () => {
+            renderedComponent = render(<MarkdownContent markdownFilePath="" className="xyz"/>);
+        });
+
+        expect(renderedComponent).toMatchSnapshot();
+    });
+
+    it("should match the snapshot when no markdown is passed", async () => {
         const res = {data: ""};
+        mockedAxios.get.mockResolvedValue(res);
+
+        let renderedComponent;
+        await act(async () => {
+            renderedComponent = render(<MarkdownContent markdownFilePath="" />);
+        });
+
+        expect(renderedComponent).toMatchSnapshot();
+    });
+
+    it("should have the class name passed via props", async () => {
+        const res = {data: "# About"};
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
@@ -43,7 +67,7 @@ describe("<MarkdownContent />", () => {
     });
 
     it("should have default class name if no class is passed via props", async () => {
-        const res = {data: ""};
+        const res = {data: "# About"};
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
@@ -62,8 +86,7 @@ describe("<MarkdownContent />", () => {
             render(<MarkdownContent markdownFilePath="" />);
         });
 
-        const linkElement = await screen.findByTestId(TEST_ID);
-        expect(linkElement.innerHTML).toBe("");
+        expect(await screen.queryByTestId(TEST_ID)).toBeNull();
     });
 
     it.each([

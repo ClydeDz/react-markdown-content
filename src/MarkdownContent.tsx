@@ -29,9 +29,13 @@ export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
       }, [markdownFilePath]);
 
     return (
-          <div data-testid="MARKDOWN_CONTENT_CONTAINER" className={resolveClassNames(className)}>
-            {ReactHtmlParser(appState)}
-          </div>
-    );
+        <>
+        {appState && (
+            <div data-testid="MARKDOWN_CONTENT_CONTAINER" className={resolveClassNames(className)}>
+                {ReactHtmlParser(appState)}
+            </div>
+        )}
+        </>
+        );
 }
 
