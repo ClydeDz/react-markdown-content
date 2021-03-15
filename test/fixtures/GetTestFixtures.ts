@@ -2,7 +2,10 @@ import fs from "fs";
 
 export enum TestFixtureResults {
     SIMPLE = "<h2>About</h2><p>This is a <em>simple</em> <strong>markdown</strong> file.</p>",
-    LINKS = "<p><a href=\"http://example.com\">Link</a> <a href=\"http://exampletwo.com\">Link two</a></p>",
+    LINKS = `<p>This Markdown content is rendered from <a href=\"https://github.com/ClydeDz/react-markdown-content\">
+        this GitHub repository</a>.
+         Download this npm package from <a href=\"https://www.npmjs.com/package/react-markdown-content\">
+        here</a>.</p>`,
     GFM_CHECKLIST = `<h2>Todo</h2><ul class="contains-task-list"><li class="task-list-item">
         <input type="checkbox" disabled=""> Something</li><li class="task-list-item">
         <input type="checkbox" disabled="" checked=""> Another thing</li></ul>`,
