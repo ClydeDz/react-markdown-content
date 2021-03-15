@@ -24,7 +24,7 @@ describe("<MarkdownContent />", () => {
 
         let renderedComponent;
         await act(async () => {
-            renderedComponent = render(<MarkdownContent markdownFilePath="" />);
+            renderedComponent = render(<MarkdownContent markdownFilePath="../test/fixtures/simple.md" />);
         });
 
         expect(renderedComponent).toMatchSnapshot();
@@ -36,19 +36,21 @@ describe("<MarkdownContent />", () => {
 
         let renderedComponent;
         await act(async () => {
-            renderedComponent = render(<MarkdownContent markdownFilePath="" className="xyz"/>);
+            renderedComponent = render(<MarkdownContent
+                markdownFilePath="../test/fixtures/simple.md"
+                className="xyz"/>);
         });
 
         expect(renderedComponent).toMatchSnapshot();
     });
 
-    it("should match the snapshot when no markdown is passed", async () => {
+    it("should match the snapshot when no markdown content is returned", async () => {
         const res = {data: ""};
         mockedAxios.get.mockResolvedValue(res);
 
         let renderedComponent;
         await act(async () => {
-            renderedComponent = render(<MarkdownContent markdownFilePath="" />);
+            renderedComponent = render(<MarkdownContent markdownFilePath="../test/fixtures/simple.md" />);
         });
 
         expect(renderedComponent).toMatchSnapshot();
@@ -59,7 +61,7 @@ describe("<MarkdownContent />", () => {
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
-            render(<MarkdownContent markdownFilePath="" className="xyz"/>);
+            render(<MarkdownContent markdownFilePath="../test/fixtures/simple.md" className="xyz"/>);
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
@@ -71,7 +73,7 @@ describe("<MarkdownContent />", () => {
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
-            render(<MarkdownContent markdownFilePath="" />);
+            render(<MarkdownContent markdownFilePath="../test/fixtures/simple.md" />);
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);
@@ -83,10 +85,23 @@ describe("<MarkdownContent />", () => {
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
-            render(<MarkdownContent markdownFilePath="" />);
+            render(<MarkdownContent markdownFilePath="../test/fixtures/simple.md" />);
         });
 
         expect(await screen.queryByTestId(TEST_ID)).toBeNull();
+    });
+
+    it("should return empty content when no markdown file path is provided", async () => {
+        // const res = {response: {data: "Invalid file path"}};
+        // mockedAxios.get.mockRejectedValue(res);
+        const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+
+        await act(async () => {
+            render(<MarkdownContent markdownFilePath="" />);
+        });
+        expect(console.warn).toBeCalledTimes(0);
+        expect(await screen.queryByTestId(TEST_ID)).toBeNull();
+        consoleSpy.mockClear();
     });
 
     it("should log a console warning if there is an error with axios", async () => {
@@ -95,7 +110,7 @@ describe("<MarkdownContent />", () => {
         const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
 
         await act(async () => {
-            render(<MarkdownContent markdownFilePath="../test/fixtures/simple.md" />);
+            render(<MarkdownContent markdownFilePath="../test/invalid/fixtures/simple.md" />);
         });
         expect(console.warn).toBeCalledTimes(1);
         expect(await screen.queryByTestId(TEST_ID)).toBeNull();
@@ -117,7 +132,7 @@ describe("<MarkdownContent />", () => {
         mockedAxios.get.mockResolvedValue(res);
 
         await act(async () => {
-            render(<MarkdownContent markdownFilePath="" />);
+            render(<MarkdownContent markdownFilePath="../test/fixtures/simple.md" />);
         });
 
         const linkElement = await screen.findByTestId(TEST_ID);

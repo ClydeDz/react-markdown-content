@@ -202,7 +202,7 @@ Object {
 }
 `;
 
-exports[`<MarkdownContent /> should match the snapshot when no markdown is passed 1`] = `
+exports[`<MarkdownContent /> should match the snapshot when no markdown content is returned 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

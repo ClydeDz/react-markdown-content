@@ -16,6 +16,9 @@ export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
     const [appState, setAppState] = useState("");
 
     useEffect(() => {
+        if (!markdownFilePath) {
+            return;
+        }
         axios.get(markdownFilePath)
         .then((res) => {
             remark()
@@ -27,7 +30,7 @@ export function MarkdownContent(props: IMarkdownContentProps): JSX.Element {
             });
         })
         .catch((error) => {
-            console.warn(error.response.data);
+            console.warn(error);
             setAppState("");
         });
       }, [markdownFilePath]);
